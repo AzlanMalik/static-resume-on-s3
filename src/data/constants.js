@@ -8,11 +8,11 @@ export const Bio = {
     "I'm a DevOps Engineer with a special knack to make software operates smoothly and effectively. I've spent years experimenting with tools like as Jenkins and AWS, constantly searching for ways to make things faster and more dependable. I enjoy solving difficult challenges and collaborating with others to create solutions that make everyone's job simpler.",
   github: "https://github.com/azlanmalik",
   resume:
-    "https://drive.google.com/file/d/1ffZrcMcn8UatXGIaautbbqpV7ADNaETA/view?usp=sharing",
+    "https://drive.google.com/file/d/1tqei7jpEEh-irN_FiHxz8q6yl_iQS5EU/view?usp=sharing",
   linkedin: "https://www.linkedin.com/in/azlanmalik/",
-  twitter: "https://twitter.com/",
-  insta: "https://www.instagram.com/",
-  facebook: "https://www.facebook.com/",
+  // twitter: "https://twitter.com/",
+  // insta: "https://www.instagram.com/",
+  // facebook: "https://www.facebook.com/",
 };  
 
 export const skills = [
@@ -95,7 +95,7 @@ export const skills = [
       {
         name: "AWS",
         image:
-        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg",
+        "https://icon.icepanel.io/Technology/png-shadow-512/AWS.png",
       },
       {
         name: "Linux",
@@ -115,7 +115,7 @@ export const skills = [
       {
         name: "Bash",
         image:
-        "https://icons8.com/icon/TMZAZMLFozcL/bash",
+        "https://icon.icepanel.io/Technology/png-shadow-512/Bash.png",
       },
 
     ],
@@ -126,26 +126,28 @@ export const skills = [
 export const experiences = [
   {
     id: 0,
-    img: "https://firebasestorage.googleapis.com/v0/b/flexi-coding.appspot.com/o/flipr.jpeg?alt=media&token=1d72532a-45eb-4c1a-a81a-c9bed9fec543",
-    role: "DevOps & Fullstack Engineering Intern",
-    company: "Flipr Inovations Pvt. Ltd.",
-    date: "Aug 2023 - July 2023",
-    desc: "Working on Flipr Platforms, managing DevOps, and streamlining the process with automation.",
+    img: "https://media.licdn.com/dms/image/C4E03AQG76y2igwNreg/profile-displayphoto-shrink_800_800/0/1647095248265?e=1712188800&v=beta&t=Bug-sV6Dq0-_L6hdb-NYjxOWLt9TukcjKV2jt9uZUeE",
+    role: "Project - DevOps Engineer",
+    company: "Lofty Soft Pvt. Ltd.",
+    date: "Oct 2023",
+    desc: "I implemented a robust CI/CD pipeline using AWS CodePipeline for a client's Python and Django-based business website, facilitating automatic building, testing, and deployment on AWS, resulting in reduced update time and enhanced development efficiency.",
     skills: [
-      "Docker",
-      "Terraform",
-      "AWS",
-      "EC2",
-      "Portainer",
-      "Nginx",
-      "JavaScript",
-      "TypeScript",
-      "Node Js",
-      " Next Js",
+      "AWS", "AWS Code Pipeline", "CI/CD", "EC2", "Cloudfront", "Django"
     ],
-    doc: "https://media.licdn.com/dms/image/D4D2DAQFlp60ZqHuaFQ/profile-treasury-image-shrink_1280_1280/0/1691180828512?e=1692381600&v=beta&t=mM5Y_NE5EPlQhez5FAN6NLVSKcO_Ojt_9Gq3mnFGkAQ",
   },
-  
+  {
+    id: 1,
+    img: "https://media.licdn.com/dms/image/C4E03AQG76y2igwNreg/profile-displayphoto-shrink_800_800/0/1647095248265?e=1712188800&v=beta&t=Bug-sV6Dq0-_L6hdb-NYjxOWLt9TukcjKV2jt9uZUeE",
+    role: "Intern - Web Developer",
+    company: "Lofty Soft Pvt. Ltd.",
+    date: "Feb 2023 - May 2023",
+    desc: "Worked on expanding my technical skillset and understanding of the full web development lifecycle by gaining exposure to various development tools and methodologies while contributing to a client's business website build.",
+    skills: [
+      "React", "Django", "Python", "Javascript", "Frontend", "HTML", "CSS"
+    ],
+    doc: "https://media.licdn.com/dms/image/D4E2DAQEqztz1BNCRNQ/profile-treasury-image-shrink_1280_1280/0/1706444020442?e=1707051600&v=beta&t=j4r6WKE7pt70uVKiG_FN26DUkC2p1bvnSBq8aV9nvRA",
+  },
+
 ];
 
 export const education = [
@@ -166,66 +168,46 @@ export const education = [
     desc: "Completed 12th grade in Pre-Engineering at Superior College of Science, Hyderabad, excelling academically and actively contributing to extracurricular activities, demonstrating strong problem-solving skills, and preparing for a future in engineering.",
     degree: "HSC(XII), Pre-Engineering",
   },
-  {
-    id: 2,
-    img: "https://scontent.fhdd2-1.fna.fbcdn.net/v/t39.30808-6/307993964_613158443580102_6572378700818765550_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=9c7eae&_nc_ohc=mdBH5gYsZK8AX_PwY7d&_nc_ht=scontent.fhdd2-1.fna&oh=00_AfBZHDc8SRT2SyFc4Qc9AhCXr4GabCA9f-peR2NFzz1XmQ&oe=65AE2641",
-    school: "Strong Base School",
-    date: "March 2015 - March 2017",
-    desc: "Completed 10th grade in Computer Science at Strong Base School, Hyderabad. Which ignited my passion for tech, sparking a journey into computer science and technology.",
-    degree: "SSC(X), Computer-Science",
-  },
-
 ];
 export const projects = [
   {
     id: 0,
-    title: "Trackify",
-    date: "Jun 2023 - Jul 2023",
+    title: "Static Portfolio Website",
+    date: "Dec 2023 - Jan 2024",
     description:
-      "Trackify is a web application designed to streamline task management and enhance productivity in the workplace. It provides a user-friendly interface for employers to keep track of their employees' daily work activities and empowers employees to log their tasks efficiently. \nAdmin Credentials: # Email: testadmin@gmail.com #Password- 123@testadmin, Employee Credentials:	#Email: testemployee@gmail.com	#Password- 123@Testemployee",
+      "",
     image:
       "https://user-images.githubusercontent.com/64485885/255202416-e1f89b04-2788-45b0-abc2-9dec616669e2.png",
     tags: [
-      "Docker",
-      "AWS",
-      "DuckDNS",
-      "Eslint",
-      "Husky",
-      "CI/CD",
-      "React Js",
-      "MongoDb",
-      "Node Js",
-      "Express Js",
-      "Redux",
+      "AWS","Code Pipeline", 
     ],
     category: "web app",
-    github: "https://github.com/rishavchanda/Trackify",
-    webapp: "https://trackify.duckdns.org",
+    github: "https://github.com/azlanmalik/react-portfolio-website",
+    webapp: "https://www.azlanmalik.tech",
   },
   {
     id: 1,
-    title: "Podstream",
-    date: "Apr 2023 - May 2023",
+    title: "Cloud Gaming Platform",
+    date: "June 2023 - Nov 2023",
     description:
-      "Developed a full-stack web application that allows users to search for, play, and pause their favorite podcasts on demand and create podcasts. Implemented user authentication using Google Auth and Jwt Auth, made responsive user interface with React JS that provides users with a seamless experience across all devices. Practiced agile methodologies to optimize team efficiency and communication.",
+      "",
     image:
       "https://user-images.githubusercontent.com/64485885/234602896-a1bd8bcc-b72b-4821-83d6-8ad885bf435e.png",
-    tags: ["React Js", "MongoDb", "Node Js", "Express Js", "Redux"],
+    tags: ["Django", "MongoDb", "Python", "AWS CDK"],
     category: "web app",
-    github: "https://github.com/rishavchanda/Podstream",
-    webapp: "https://podstream.netlify.app/",
+    github: "https://github.com/AzlanMalik/CloudPlay",
+    webapp: "",
     member: [
       {
-        name: "Rishav Chanda",
-        img: "https://avatars.githubusercontent.com/u/64485885?v=4",
-        linkedin: "https://www.linkedin.com/in/rishav-chanda-b89a791b3/",
-        github: "https://github.com/rishavchanda/",
+        name: "Azlan Malik",
+        img: "https://media.licdn.com/dms/image/D4E03AQHkbUJHcYj47w/profile-displayphoto-shrink_800_800/0/1704727853211?e=1710979200&v=beta&t=0EHRdKSMI3pptl0dntQ_p7FrUqr1rW3MADRspSKEMGg",
+        linkedin: "https://www.linkedin.com/in/azlanmalik",
+        github: "https://github.com/azlanmalik/",
       },
       {
-        name: "Upasana Chaudhuri",
-        img: "https://avatars.githubusercontent.com/u/100614635?v=4",
-        linkedin: "https://www.linkedin.com/in/upasana-chaudhuri-2a2bb5231/",
-        github: "https://github.com/upasana0710",
+        name: "Fahad Chandio",
+        img: "https://media.licdn.com/dms/image/D4D35AQFYXk1EZWnfxw/profile-framedphoto-shrink_800_800/0/1692507374570?e=1706220000&v=beta&t=2ZfhuH093JJ1kDOO28kezpggJPGyZY5Y_REK2IpSgAY",
+        linkedin: "https://www.linkedin.com/in/fahad-chandio-646420b9/",
       },
     ],
   },
