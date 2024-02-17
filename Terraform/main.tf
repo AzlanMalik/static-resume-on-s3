@@ -1,4 +1,6 @@
-# Creating the S3 Bucker
+/* -------------------------------------------------------------------------- */
+/*                           Creating the S3 Bucket                           */
+/* -------------------------------------------------------------------------- */
 resource "aws_s3_bucket" "my_bucket" {
   bucket = var.domain-name
 
@@ -7,7 +9,7 @@ resource "aws_s3_bucket" "my_bucket" {
   }
 }
 
-# Enabling Static Hosting on S3
+/* ---------------------- Enabling Static Hosting on S3 --------------------- */
 resource "aws_s3_bucket_website_configuration" "enable_hosting" {
   bucket = aws_s3_bucket.my_bucket.id
 
@@ -20,7 +22,7 @@ resource "aws_s3_bucket_website_configuration" "enable_hosting" {
   }
 }
 
-# Enabling Public Access on S3 Bucket and adding Policy
+/* ---------- Enabling Public Access on S3 Bucket and adding Policy --------- */
 resource "aws_s3_bucket_public_access_block" "allow_public_access" {
   bucket = aws_s3_bucket.my_bucket.id
 
@@ -47,13 +49,18 @@ resource "aws_s3_bucket_policy" "allow_access_policy" {
 
 }
 
-# SSL Certificate
+/* -------------------------------------------------------------------------- */
+/*                             SSL/TLS CERTIFICATE                            */
+/* -------------------------------------------------------------------------- */
 resource "aws_acm_certificate" "cert" {
   domain_name       = var.domain-name
   validation_method = "DNS"
 }
 
-# Cloudfront
+
+/* -------------------------------------------------------------------------- */
+/*                                 CLOUDFRONT                                 */
+/* -------------------------------------------------------------------------- */
 resource "aws_cloudfront_origin_access_control" "oac" {
   name                              = "example"
   description                       = "Example Policy"
@@ -142,8 +149,8 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
 
   restrictions {
     geo_restriction {
-      restriction_type = "whitelist"
-      locations        = ["US", "CA", "GB", "DE"]
+      restriction_type = "none"
+      locations        = []
     }
   }
 
@@ -153,56 +160,161 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   }
 }
 
-# euaeuauauauauaueuauaeuauaeuauauaueuouaouaouauaeuaueauauauauaeuauauauauau
-# CodeCommit
-resource "aws_iam_role" "codebuild_role" {
-  name = "codebuild-role"
 
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Action = "sts:AssumeRole"
-        Effect = "Allow"
-        Principal = {
-          Service = "codebuild.amazonaws.com"
-        }
-      },
-    ]
-  })
+
+/* -------------------------------------------------------------------------- */
+/*                                  CODEBULID                                 */
+/* -------------------------------------------------------------------------- */
+
+resource "aws_codebuild_source_credential" "codebulid-credentials" {
+  auth_type   = "PERSONAL_ACCESS_TOKEN"
+  server_type = "GITHUB"
+  token       = var.access-token
 }
 
+resource "aws_codebuild_project" "project-codebuild" {
+  name           = "static-resume-bulid"
+  description    = "Static Resume Website Codebuild"
+  build_timeout  = 5
+  queued_timeout = 5
 
-resource "aws_iam_role_policy_attachment" "codebuild_policy_attachment" {
-  role       = aws_iam_role.codebuild_role.name
-  policy_arn = "arn:aws:iam::aws:policy/AWSCodeBuildAdminAccess"
-}
-
-
-resource "aws_codebuild_project" "example34" {
-  name         = "example"
   service_role = aws_iam_role.codebuild_role.arn
 
   artifacts {
     type = "NO_ARTIFACTS"
   }
 
+  logs_config {
+    cloudwatch_logs {
+      status = "DISABLED"
+    }
+  }
+
   environment {
     compute_type                = "BUILD_GENERAL1_SMALL"
-    image                       = "aws/codebuild/standard:4.0"
+    image                       = "aws/codebuild/standard:7.0"
     type                        = "LINUX_CONTAINER"
     image_pull_credentials_type = "CODEBUILD"
   }
 
   source {
     type            = "GITHUB"
-    location        = "https://github.com/username/repository.git" 
+    location        = var.github-repo
     git_clone_depth = 1
   }
 }
 
-resource "aws_codebuild_source_credential" "example" {
-  auth_type   = "PERSONAL_ACCESS_TOKEN"
-  server_type = "GITHUB"
-  token       = "example"
+
+/* -------------------------------------------------------------------------- */
+/*                                CODEPIPELINE                                */
+/* -------------------------------------------------------------------------- */
+resource "aws_codepipeline" "codepipeline" {
+  name     = "static-resume-pipeline"
+  role_arn = aws_iam_role.codepipeline_role.arn
+
+  artifact_store {
+    location = aws_s3_bucket.codepipeline_bucket.bucket
+    type     = "S3"
+  }
+
+  stage {
+    name = "Source"
+
+    action {
+      name             = "Source"
+      category         = "Source"
+      owner            = "AWS"
+      provider         = "CodeStarSourceConnection"
+      version          = "1"
+      output_artifacts = ["source_output"]
+
+      configuration = {
+        ConnectionArn    = aws_codestarconnections_connection.example.arn
+        FullRepositoryId = "${var.git-owner}/${var.git-repo}"
+        BranchName       = "main"
+      }
+    }
+  }
+
+  stage {
+    name = "Build"
+
+    action {
+      name             = "Build"
+      category         = "Build"
+      owner            = "AWS"
+      provider         = "CodeBuild"
+      input_artifacts  = ["source_output"]
+      output_artifacts = ["build_output"]
+      version          = "1"
+
+      configuration = {
+        ProjectName = aws_codebuild_project.project-codebuild.name
+      }
+    }
+  }
+
+  stage {
+    name = "Deploy"
+
+    action {
+      name            = "Deploy-To-S3"
+      category        = "Deploy"
+      owner           = "AWS"
+      provider        = "S3"
+      input_artifacts = ["build_output"]
+      version         = "1"
+
+      configuration = {
+        BucketName = aws_s3_bucket.my_bucket.bucket
+        Extract    = true
+      }
+    }
+  }
+
 }
+
+
+
+/* --------------------------- CODEPIPELINE BUCKET -------------------------- */
+resource "aws_s3_bucket" "codepipeline_bucket" {
+  bucket = var.codepipeline-bucket
+}
+
+resource "aws_s3_bucket_public_access_block" "codepipeline_bucket_pab" {
+  bucket = aws_s3_bucket.codepipeline_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
+
+/* --------------------------- CODESTAR CONNECTION -------------------------- */
+resource "aws_codestarconnections_connection" "example" {
+  name          = "static-resume-connection"
+  provider_type = "GitHub"
+}
+
+
+
+
+
+
+
+# # Wire the CodePipeline webhook into a GitHub repository.
+# resource "github_repository_webhook" "bar" {
+#   repository = var.github-repo
+
+#   name = "web"
+
+#   configuration {
+#     url          = aws_codepipeline_webhook.bar.url
+#     content_type = "json"
+#     insecure_ssl = true
+#     secret       = local.webhook_secret
+#   }
+
+#   events = ["push"]
+# }
