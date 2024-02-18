@@ -3,8 +3,8 @@
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-
 <!-- webiste images -->
+
 ![Homepage](images/screenshot_.png)
 ![Skills Section](images/screenshot_2.png)
 ![Education Section](images/screenshot_3.png)
@@ -39,8 +39,6 @@
 
 ## About The Project
 
-
-
 This project showcases the deployment of a `React website` as a static site on AWS S3, prioritizing both performance and security. The website leverages the scalability and cost-effectiveness of `S3`, while `CloudFront` serves as a CDN for fast global access and reduced latency. Additionally, an HTTPS connection ensures secure data transmission.
 
 But that's not all. To streamline the deployment process and eliminate manual intervention, I crafted an automated CI/CD pipeline using AWS services. `CodeCommit` serves as the secure repository for application code, triggering automated builds and tests with `CodeBuild` upon any changes. `CodeDeploy` then seamlessly updates the live site hosted on S3, while `CodePipeline` orchestrates the entire flow, ensuring smooth delivery.
@@ -60,7 +58,6 @@ Furthermore, I have used `Terraform`, an Infrastructure as Code tool, to automat
 - [AWS CodeBuild](https://aws.amazon.com/codebuild/)
 - [AWS CodeDeploy](https://aws.amazon.com/codedeploy/)
 - [AWS CodePipeline](https://aws.amazon.com/code/)
-
 
 ### Deployed On:
 
@@ -113,8 +110,6 @@ http://localhost:3000
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- LICENSE -->
 
 ## License
@@ -129,7 +124,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Azlan Malik - [@azlanmalik](https://linkedin.com/in/azlanmalik) - hello@azlanmalik.tech
 
-Project Link: [https://github.com/azlanmalik/repo_name](https://github.com/azlanmalik/repo_name)
+Project Link: [https://github.com/azlanmalik/static-resume-on-s3](https://github.com/azlanmalik/static-resume-on-s3)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -137,25 +132,25 @@ Project Link: [https://github.com/azlanmalik/repo_name](https://github.com/azlan
 
 ## Acknowledgments
 
-The Website React Code is written by 
-- [Rishav Chandra](https://github.com/rishavchanda/rishavchanda.github.io)
+The Website React Code is written by
 
+- [Rishav Chandra](https://github.com/rishavchanda/rishavchanda.github.io)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/azlanmalik/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/azlanmalik/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/azlanmalik/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/azlanmalik/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/azlanmalik/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/azlanmalik/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/azlanmalik/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/azlanmalik/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/azlanmalik/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/azlanmalik/repo_name/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/azlanmalik/static-resume-on-s3.svg?style=for-the-badge
+[contributors-url]: https://github.com/azlanmalik/static-resume-on-s3/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/azlanmalik/static-resume-on-s3.svg?style=for-the-badge
+[forks-url]: https://github.com/azlanmalik/static-resume-on-s3/network/members
+[stars-shield]: https://img.shields.io/github/stars/azlanmalik/static-resume-on-s3.svg?style=for-the-badge
+[stars-url]: https://github.com/azlanmalik/static-resume-on-s3/stargazers
+[issues-shield]: https://img.shields.io/github/issues/azlanmalik/static-resume-on-s3.svg?style=for-the-badge
+[issues-url]: https://github.com/azlanmalik/static-resume-on-s3/issues
+[license-shield]: https://img.shields.io/github/license/azlanmalik/static-resume-on-s3.svg?style=for-the-badge
+[license-url]: https://github.com/azlanmalik/static-resume-on-s3/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/azlanmalik
 [product-screenshot]: images/screenshot.png

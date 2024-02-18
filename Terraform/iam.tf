@@ -1,62 +1,65 @@
-/* --------------------------- CODEBUILD IAM USER -------------------------- */
-resource "aws_iam_role" "codebuild_role" {
-  name = "codebuild-role"
+ /* -------------------------------------------------------------------------- */
+ /*                        CODEBUILD IAM ROLE & POLICIES                       */
+ /* -------------------------------------------------------------------------- */
+data "aws_iam_policy_document" "codebulid-policy" {
+  statement {
+    actions = ["sts:AssumeRole"]
 
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Action = "sts:AssumeRole"
-        Effect = "Allow"
-        Principal = {
-          Service = "codebuild.amazonaws.com"
-        }
-      },
-    ]
-  })
+    principals {
+      type        = "Service"
+      identifiers = ["codebuild.amazonaws.com"]
+    }
+  }
+}
+resource "aws_iam_role" "codebuild-iam-role" {
+  name               = "${var.project-name}-codebulid-role"
+  assume_role_policy = data.aws_iam_policy_document.codebulid-policy.json
 }
 
-resource "aws_iam_role_policy_attachment" "codebuild_policy_attachment" {
-  role       = aws_iam_role.codebuild_role.name
-  policy_arn = "arn:aws:iam::aws:policy/AWSCodeBuildAdminAccess"
+/* -------------------------------------------------------------------------- */
+/*        ATTACHING BUCKET POLICY TO CODEBULID AND CODPIPELINE                */
+/* -------------------------------------------------------------------------- */
+
+
+resource "aws_iam_policy_attachment" "bucket-attach-to-codepipeline" {
+  name = "bucket-attach-to-codepipeline"
+  roles = [aws_iam_role.codebuild-iam-role.name,aws_iam_role.codepipeline-iam-role.name]
+  policy_arn = aws_iam_policy.codepipeline-bucket-policy.arn
 }
 
-resource "aws_iam_role_policy" "codepipeline_policy2" {
-  name   = "codepipeline_policy"
-  role   = aws_iam_role.codebuild_role.id
-  policy = data.aws_iam_policy_document.codepipeline_policy.json
-}
 
-
-/* -------------------------- CODEPIPELINE IAM USER ------------------------- */
-resource "aws_iam_role" "codepipeline_role" {
-  name               = "test-role"
-  assume_role_policy = data.aws_iam_policy_document.assume_role.json
-}
-
-resource "aws_iam_policy" "s3_put_object" {
-  name        = "S3PutObject"
-  description = "Policy to allow S3 PutObject"
+resource "aws_iam_policy" "codepipeline-bucket-policy" {
+  name        = "codepipeline-bucket-policy"
+  description = "${var.project-name}-codepipeline-bucket-policy"
 
   policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
       {
-        Effect   = "Allow",
-        Action   = "s3:PutObject",
-        Resource = "arn:aws:s3:::${aws_s3_bucket.my_bucket.bucket}/*" # Replace with your bucket ARN
-      }
+        Action = [
+          "s3:GetObject",
+          "s3:GetObjectVersion",
+          "s3:GetBucketVersioning",
+          "s3:PutObjectAcl",
+          "s3:PutObject",
+        ]
+        Effect   = "Allow"
+        Resource = "arn:aws:s3:::${aws_s3_bucket.codepipeline-bucket.bucket}"
+      },
     ]
   })
 }
 
-resource "aws_iam_role_policy_attachment" "example_attach12" {
-  role       = aws_iam_role.codepipeline_role.name
-  policy_arn = aws_iam_policy.s3_put_object.arn
+ /* -------------------------------------------------------------------------- */
+ /*                      CODEPIPELINE IAM ROLE & POLICIES                      */
+ /* -------------------------------------------------------------------------- */
+resource "aws_iam_role" "codepipeline-iam-role" {
+  name               = "${var.project-name}-codepipeline-iam-role"
+  assume_role_policy = data.aws_iam_policy_document.codepipeline-assume-policy.json
 }
 
 
-data "aws_iam_policy_document" "assume_role" {
+data "aws_iam_policy_document" "codepipeline-assume-policy" {
   statement {
     effect = "Allow"
 
@@ -69,47 +72,48 @@ data "aws_iam_policy_document" "assume_role" {
   }
 }
 
-
-data "aws_iam_policy_document" "codepipeline_policy" {
-  statement {
-    effect = "Allow"
-
-    actions = [
-      "s3:GetObject",
-      "s3:GetObjectVersion",
-      "s3:GetBucketVersioning",
-      "s3:PutObjectAcl",
-      "s3:PutObject",
-    ]
-
-    resources = [
-      aws_s3_bucket.codepipeline_bucket.arn,
-      "${aws_s3_bucket.codepipeline_bucket.arn}/*"
-    ]
-  }
-
-  statement {
-    effect    = "Allow"
-    actions   = ["codestar-connections:UseConnection"]
-    resources = [aws_codestarconnections_connection.example.arn]
-  }
-
-  statement {
-    effect = "Allow"
-
-    actions = [
-      "codebuild:BatchGetBuilds",
-      "codebuild:StartBuild",
-    ]
-
-    resources = ["*"]
-  }
+resource "aws_iam_policy_attachment" "codepipeline-policy-attach" {
+  name = "codepipeline-policy-attach"
+  roles = [aws_iam_role.codepipeline-iam-role.name]
+  policy_arn = aws_iam_policy.codepipeline-policy.arn
 }
 
-resource "aws_iam_role_policy" "codepipeline_policy" {
-  name   = "codepipeline_policy"
-  role   = aws_iam_role.codepipeline_role.id
-  policy = data.aws_iam_policy_document.codepipeline_policy.json
-}
+resource "aws_iam_policy" "codepipeline-policy" {
+  name        = "codepipeline-policy"
+  description = "${var.project-name}-codepipeline-policy"
 
-/* ----------------------------------- ts ----------------------------------- */
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Action = [
+          "s3:PutObject"
+        ]
+        Effect   = "Allow"
+        Resource = "arn:aws:s3:::${aws_s3_bucket.website-bucket.bucket}/*"
+      },
+    ],
+
+    Statement = [
+      {
+        Action = [
+          "codestar-connections:UseConnection"
+        ]
+        Effect   = "Allow"
+        Resource = "${aws_codestarconnections_connection.website-codestar-connection.arn}"
+      },
+    ],
+
+    Statement = [
+      {
+        Action = [
+          "codebuild:BatchGetBuilds",
+          "codebuild:StartBuild",
+        ]
+        Effect   = "Allow"
+        Resource = "${aws_codebuild_project.website-codebuild.arn}"
+      },
+    ],
+  })
+}
+ 

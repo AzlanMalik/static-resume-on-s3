@@ -1,9 +1,13 @@
-variable "domain-name" {
-  description = "your website domain name"
+variable "aws-region" {
+  description = "AWS region where you want to deploy all of the services"
 }
 
-variable "access-token" {
-  description = "github access token for codebulid"
+variable "project-name" {
+  description = "Any name you want to mention on AWS resource"
+}
+
+variable "domain-name" {
+  description = "your website domain name"
 }
 
 variable "github-repo" {
