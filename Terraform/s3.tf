@@ -3,6 +3,8 @@
 /* -------------------------------------------------------------------------- */
 resource "aws_s3_bucket" "website-bucket" {
   bucket = var.domain-name
+
+  force_destroy = true
 }
 
 /* ---------------------- Enabling Static Hosting on S3 --------------------- */
@@ -50,4 +52,6 @@ resource "aws_s3_bucket_policy" "allow-access-policy" {
 /* -------------------------------------------------------------------------- */
 resource "aws_s3_bucket" "codepipeline-bucket" {
   bucket = var.codepipeline-bucket
+
+  force_destroy = true
 }

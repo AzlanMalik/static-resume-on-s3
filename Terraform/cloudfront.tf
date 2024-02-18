@@ -104,10 +104,14 @@ resource "aws_cloudfront_distribution" "s3-distribution" {
   }
 
   viewer_certificate {
-    acm_certificate_arn      = aws_acm_certificate.website-certificate.arn
-    ssl_support_method       = "sni-only"
-    minimum_protocol_version = "TLSv1.2_2021"
-  }
+  cloudfront_default_certificate = aws_acm_certificate.website-certificate.status == "PENDING_VALIDATION" ? true : null 
+  
+  acm_certificate_arn      = aws_acm_certificate.website-certificate.status == "PENDING_VALIDATION" ? null : aws_acm_certificate.website-certificate.arn
+
+  ssl_support_method       = "sni-only"
+  minimum_protocol_version = "TLSv1.2_2021"
+
+}
 }
 
 

@@ -44,7 +44,7 @@ resource "aws_iam_policy" "codepipeline-bucket-policy" {
           "s3:PutObject",
         ]
         Effect   = "Allow"
-        Resource = "arn:aws:s3:::${aws_s3_bucket.codepipeline-bucket.bucket}"
+        Resource = "arn:aws:s3:::${aws_s3_bucket.codepipeline-bucket.bucket}/*"
       },
     ]
   })
@@ -92,9 +92,6 @@ resource "aws_iam_policy" "codepipeline-policy" {
         Effect   = "Allow"
         Resource = "arn:aws:s3:::${aws_s3_bucket.website-bucket.bucket}/*"
       },
-    ],
-
-    Statement = [
       {
         Action = [
           "codestar-connections:UseConnection"
@@ -102,9 +99,6 @@ resource "aws_iam_policy" "codepipeline-policy" {
         Effect   = "Allow"
         Resource = "${aws_codestarconnections_connection.website-codestar-connection.arn}"
       },
-    ],
-
-    Statement = [
       {
         Action = [
           "codebuild:BatchGetBuilds",
@@ -113,7 +107,7 @@ resource "aws_iam_policy" "codepipeline-policy" {
         Effect   = "Allow"
         Resource = "${aws_codebuild_project.website-codebuild.arn}"
       },
-    ],
+    ]
   })
 }
  

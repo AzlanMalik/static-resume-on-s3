@@ -172,17 +172,17 @@ export const education = [
 export const projects = [
   {
     id: 0,
-    title: "Static Portfolio Website",
-    date: "Dec 2023 - Jan 2024",
+    title: "React Static Resume deployed on S3 with Terraform",
+    date: "Jan 2024 - Feb 2024",
     description:
-      "",
+      "Deployed an Static Resume built with React on S3 using AWS Codepipeline and whole infrastructure was deploy on AWS using Terraform.",
     image:
-      "https://user-images.githubusercontent.com/64485885/255202416-e1f89b04-2788-45b0-abc2-9dec616669e2.png",
+      "https://github.com/AzlanMalik/static-resume-on-s3/blob/main/images/screenshot_.png",
     tags: [
-      "AWS","Code Pipeline", 
+      "AWS","Code Pipeline","Terraform","S3","Cloudfront" 
     ],
     category: "web app",
-    github: "https://github.com/azlanmalik/react-portfolio-website",
+    github: "https://github.com/azlanmalik/static-resume-on-s3",
     webapp: "https://www.azlanmalik.tech",
   },
   {

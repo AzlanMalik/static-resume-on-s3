@@ -103,8 +103,9 @@ resource "aws_codepipeline" "website-codepipeline" {
 
 }
 
+
 /* --------------------------- CODESTAR CONNECTION -------------------------- */
 resource "aws_codestarconnections_connection" "website-codestar-connection" {
-  name          = "${var.project-name} connection"
+  name          = "${var.project-name}-connection"
   provider_type = "GitHub"
 }
