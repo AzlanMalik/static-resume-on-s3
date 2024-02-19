@@ -63,7 +63,6 @@ resource "aws_codepipeline" "website-codepipeline" {
         BranchName       = "main"
       }
     }
-    
   }
 
   stage {
