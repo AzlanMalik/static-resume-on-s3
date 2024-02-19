@@ -30,7 +30,8 @@ resource "aws_cloudfront_distribution" "s3-distribution" {
   comment             = var.project-name
   default_root_object = "index.html"
 
-
+  aliases = aws_acm_certificate.website-certificate.status == "PENDING_VALIDATION" ? null : [var.domain-name]
+  
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
