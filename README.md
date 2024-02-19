@@ -41,7 +41,7 @@
 
 This project showcases the deployment of a `React website` as a static site on AWS S3, prioritizing both performance and security. The website leverages the scalability and cost-effectiveness of `S3`, while `CloudFront` serves as a CDN for fast global access and reduced latency. Additionally, an HTTPS connection ensures secure data transmission.
 
-But that's not all. To streamline the deployment process and eliminate manual intervention, I crafted an automated CI/CD pipeline using AWS services. `CodeCommit` serves as the secure repository for application code, triggering automated builds and tests with `CodeBuild` upon any changes. `CodeDeploy` then seamlessly updates the live site hosted on S3, while `CodePipeline` orchestrates the entire flow, ensuring smooth delivery.
+But that's not all. To streamline the deployment process and eliminate manual intervention, I crafted an automated CI/CD pipeline using AWS services. `GitHub` serves as the secure repository for application code, triggering automated builds and tests with `CodeBuild` upon any changes. `CodeDeploy` then seamlessly updates the live site hosted on S3, while `CodePipeline` orchestrates the entire flow, ensuring smooth delivery.
 
 Furthermore, I have used `Terraform`, an Infrastructure as Code tool, to automate the provisioning of all infrastructure with just a single click. This approach provides flexibility, maintainability, and reproducibility, as the entire infrastructure configuration is documented and version-controlled.
 
@@ -54,9 +54,7 @@ Furthermore, I have used `Terraform`, an Infrastructure as Code tool, to automat
 ### Deployed Using:
 
 - [Terraform](https://aws.amazon.com/codecommit/)
-- [AWS CodeCommit](https://aws.amazon.com/codecommit/)
 - [AWS CodeBuild](https://aws.amazon.com/codebuild/)
-- [AWS CodeDeploy](https://aws.amazon.com/codedeploy/)
 - [AWS CodePipeline](https://aws.amazon.com/code/)
 
 ### Deployed On:
@@ -69,6 +67,8 @@ Furthermore, I have used `Terraform`, an Infrastructure as Code tool, to automat
 <!-- GETTING STARTED -->
 
 ## Getting Started
+
+## To Run Website Locally
 
 ### Prerequisites
 
@@ -107,6 +107,36 @@ npm start
 ```sh
 http://localhost:3000
 ```
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## To Deploy and Run Website on AWS
+
+### Prerequisites
+
+To run this project you must have Terraform and AWS Cli on your system.
+
+- [Terraform](https://nodejs.org/en/download/)
+- [AWS Cli](https://nodejs.org/en/download/)
+
+### Deploying Process
+
+1. Fork the repository:
+
+2. Clone the repository from your github account
+
+3. Open Terminal and Move to Terraform Directory
+
+4. Run these commands
+```sh
+terraform init
+terraform apply --auto-approve
+```
+
+5. Then Copy the CNAME Records Values from the terminal and Add them to your domain NameServer
+
+6. Open AWS Console and link the Codepipeline to your Github 
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
