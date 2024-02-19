@@ -83,6 +83,7 @@ resource "aws_codepipeline" "website-codepipeline" {
     }
   }
 
+
   stage {
     name = "Deploy"
 
@@ -97,7 +98,7 @@ resource "aws_codepipeline" "website-codepipeline" {
       configuration = {
         BucketName = aws_s3_bucket.website-bucket.bucket
         Extract    = true
-        
+
       }
     }
   }
