@@ -2,6 +2,10 @@ variable "aws-region" {
   description = "AWS region where you want to deploy all of the services"
 }
 
+variable "branch" {
+  description = "Add branch name of your github repo"
+}
+
 variable "project-name" {
   description = "Any name you want to mention on AWS resource"
 }

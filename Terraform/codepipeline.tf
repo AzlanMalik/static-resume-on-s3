@@ -60,7 +60,7 @@ resource "aws_codepipeline" "website-codepipeline" {
       configuration = {
         ConnectionArn    = aws_codestarconnections_connection.website-codestar-connection.arn
         FullRepositoryId = "${var.git-owner}/${var.git-repo}"
-        BranchName       = "main"
+        BranchName       = var.branch
       }
     }
   }
