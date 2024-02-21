@@ -145,7 +145,7 @@ export const experiences = [
     skills: [
       "React", "Django", "Python", "Javascript", "Frontend", "HTML", "CSS"
     ],
-    doc: "https://media.licdn.com/dms/image/D4E2DAQEqztz1BNCRNQ/profile-treasury-image-shrink_1280_1280/0/1706444020442?e=1707051600&v=beta&t=j4r6WKE7pt70uVKiG_FN26DUkC2p1bvnSBq8aV9nvRA",
+    doc: "https://photos.app.goo.gl/DUcQ7pWh4voyPfyX6",
   },
 
 ];
@@ -177,7 +177,7 @@ export const projects = [
     description:
       "Deployed an Static Resume built with React on S3 using AWS Codepipeline and whole infrastructure was deploy on AWS using Terraform.",
     image:
-      "https://raw.githubusercontent.com/AzlanMalik/static-resume-on-s3/main/images/screenshot_.png",
+      "https://drive.google.com/file/d/1Iq_nkJwvq5fNuvnXTFV9SCFHV2ATAKw7/view?usp=sharing",
     tags: [
       "AWS","Code Pipeline","Terraform","S3","Cloudfront" 
     ],
@@ -192,7 +192,7 @@ export const projects = [
     description:
       "",
     image:
-      "https://user-images.githubusercontent.com/64485885/234602896-a1bd8bcc-b72b-4821-83d6-8ad885bf435e.png",
+      "https://drive.google.com/file/d/1Rjac47XF8uDEeRUFtuRj_vxDAr3WhdKr/view?usp=sharing",
     tags: ["Django", "MongoDb", "Python", "AWS CDK"],
     category: "web app",
     github: "https://github.com/AzlanMalik/CloudPlay",
