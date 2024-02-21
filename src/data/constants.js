@@ -145,7 +145,7 @@ export const experiences = [
     skills: [
       "React", "Django", "Python", "Javascript", "Frontend", "HTML", "CSS"
     ],
-    doc: "https://photos.app.goo.gl/DUcQ7pWh4voyPfyX6",
+    doc: "https://raw.githubusercontent.com/AzlanMalik/static-resume-on-s3/main/images/AzlanMalik-LoftySoft-Internship.jpg",
   },
 
 ];
@@ -177,26 +177,13 @@ export const projects = [
     description:
       "Deployed an Static Resume built with React on S3 using AWS Codepipeline and whole infrastructure was deploy on AWS using Terraform.",
     image:
-      "https://drive.google.com/file/d/1Iq_nkJwvq5fNuvnXTFV9SCFHV2ATAKw7/view?usp=sharing",
+      "https://raw.githubusercontent.com/AzlanMalik/static-resume-on-s3/main/images/static-resume-thumbnail.jpg",
     tags: [
       "AWS","Code Pipeline","Terraform","S3","Cloudfront" 
     ],
     category: "web app",
     github: "https://github.com/azlanmalik/static-resume-on-s3",
     webapp: "https://www.azlanmalik.tech",
-  },
-  {
-    id: 1,
-    title: "Cloud Gaming Platform",
-    date: "June 2023 - Nov 2023",
-    description:
-      "",
-    image:
-      "https://drive.google.com/file/d/1Rjac47XF8uDEeRUFtuRj_vxDAr3WhdKr/view?usp=sharing",
-    tags: ["Django", "MongoDb", "Python", "AWS CDK"],
-    category: "web app",
-    github: "https://github.com/AzlanMalik/CloudPlay",
-    webapp: "",
     member: [
       {
         name: "Azlan Malik",
@@ -205,11 +192,25 @@ export const projects = [
         github: "https://github.com/azlanmalik/",
       },
       {
-        name: "Fahad Chandio",
-        img: "https://media.licdn.com/dms/image/D4D35AQFYXk1EZWnfxw/profile-framedphoto-shrink_800_800/0/1692507374570?e=1706220000&v=beta&t=2ZfhuH093JJ1kDOO28kezpggJPGyZY5Y_REK2IpSgAY",
-        linkedin: "https://www.linkedin.com/in/fahad-chandio-646420b9/",
-      },
+        name: "Rishav Chanda",
+        img: "https://avatars.githubusercontent.com/u/64485885?v=4",
+        linkedin: "https://www.linkedin.com/in/rishav-chanda-b89a791b3/",
+        github: "https://github.com/rishavchanda",
+      },   
     ],
+  },
+  {
+    id: 1,
+    title: "Deployment of Netflix Clone App on AWS using DevSecOps Practices",
+    date: "Feb 2024",
+    description:
+      "Still in Progress...",
+    image:
+      "https://raw.githubusercontent.com/AzlanMalik/static-resume-on-s3/main/images/netflix-clone-thumbnail.jpg",
+    tags: ["DevSecOps", "AWS", "Terraform", "React"],
+    category: "web app",
+    github: "https://github.com/AzlanMalik/CloudPlay",
+    webapp: "",
   },
 
 ];
