@@ -177,7 +177,7 @@ export const projects = [
     description:
       "Deployed an Static Resume built with React on S3 using AWS Codepipeline and whole infrastructure was deploy on AWS using Terraform.",
     image:
-      "https://github.com/AzlanMalik/static-resume-on-s3/blob/main/images/screenshot_.png",
+      "https://raw.githubusercontent.com/AzlanMalik/static-resume-on-s3/main/images/screenshot_.png",
     tags: [
       "AWS","Code Pipeline","Terraform","S3","Cloudfront" 
     ],

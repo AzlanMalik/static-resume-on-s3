@@ -6,11 +6,14 @@ output "connect-codepipeline-with-github" {
   ]
 }
 
+
 output "certificate-cname-records" {
   description = "Add these records in your domain nameserver"
   value = aws_acm_certificate.website-certificate.status == "PENDING_VALIDATION" ? [
-    for dvo in aws_acm_certificate.website-certificate.domain_validation_options :  
-    "CNAME Record for ${dvo.domain_name}: ${dvo.resource_record_name} => ${dvo.resource_record_value} Record No.2 : www => ${aws_cloudfront_distribution.s3-distribution.domain_name} " 
+    for dvo in aws_acm_certificate.website-certificate.domain_validation_options :   
+    <<EOT
+    Record No.1 for ${dvo.domain_name}: ${dvo.resource_record_name} => ${dvo.resource_record_value}
+    Record No.2 : www => ${aws_cloudfront_distribution.s3-distribution.domain_name}
+    EOT
   ] : ["Certificate Attached Successfully"]
 }
-
