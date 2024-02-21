@@ -3,41 +3,32 @@
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
+
+## Weblink: [Live Website](https://www.azlanmalik.tech)
+
 <!-- webiste images -->
 
-![Homepage](images/screenshot_.png)
+![Homepage](images/static-resume-thumbnail.jpg)
 ![Skills Section](images/screenshot_2.png)
 ![Education Section](images/screenshot_3.png)
 
+
+
+
 <!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
+## Table of Contents
+- [Introduction](#introduction)
+- [Technologies Used](#technology-used)
+- [Getting Started](#getting-started)
+- [Run Website Locally](#to-run-website-locally)
+- [Deploy Website on AWS](#to-deploy-and-run-website-on-aws)
+- [License](#license)
+- [Acknowledgements](#Acknowledgments)
+
 
 <!-- ABOUT THE PROJECT -->
 
-## About The Project
+## Introduction
 
 This project showcases the deployment of a `React website` as a static site on AWS S3, prioritizing both performance and security. The website leverages the scalability and cost-effectiveness of `S3`, while `CloudFront` serves as a CDN for fast global access and reduced latency. Additionally, an HTTPS connection ensures secure data transmission.
 
@@ -47,6 +38,7 @@ Furthermore, I have used `Terraform`, an Infrastructure as Code tool, to automat
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+## Technology Used
 ### Built With:
 
 - [React.js](https://reactjs.org/)
@@ -66,7 +58,7 @@ Furthermore, I have used `Terraform`, an Infrastructure as Code tool, to automat
 
 <!-- GETTING STARTED -->
 
-## Getting Started
+# Getting Started
 
 ## To Run Website Locally
 
@@ -81,28 +73,22 @@ To run this project you must have Node installed on your machine. If you do not 
 1. Clone the repository:
 
 ```sh
-git clone https://github.com/azlanmalik/github_repo.git
+git clone https://github.com/azlanmalik/static-resume-on-s3.git
 ```
 
-2. Navigate to the project directory:
-
-```sh
-cd react-portfolio
-```
-
-3. Install the dependencies:
+2. Install the dependencies:
 
 ```sh
 npm install
 ```
 
-4. Start the development server:
+3. Start the development server:
 
 ```sh
 npm start
 ```
 
-5. Open your browser and visit:
+4. Open your browser and visit:
 
 ```sh
 http://localhost:3000
@@ -114,29 +100,74 @@ http://localhost:3000
 
 ### Prerequisites
 
-To run this project you must have Terraform and AWS Cli on your system.
+To run this project you must have Terraform and AWS Cli installed and configured on your system.
 
 - [Terraform](https://nodejs.org/en/download/)
 - [AWS Cli](https://nodejs.org/en/download/)
+- [AWS Account](https://aws.amazon.com/)
+
+Optional: 
+- Having a Domain Name is Recommended but not Necessary.
 
 ### Deploying Process
 
 1. Fork the repository:
+  ```sh
+  https://github.com/AzlanMalik/static-resume-on-s3
+  ```
 
 2. Clone the repository from your github account
+```sh
+  git clone <your-repo-url>
+```
 
-3. Open Terminal and Move to Terraform Directory
+3. Open the Cloned Repo in any Code Editor and change the `src/data/constants.js` with your information
 
-4. Run these commands
+4. Then in Terraform Folder Create a file named `Terraform.tfvars` and copy the text below in it
+```sh
+aws-region          = "us-east-1" #Don't change it because AWS CodeStar service is only present on specific regions
+branch              = "main" 
+project-name        = ""
+domain-name         = ""
+github-repo         = ""
+git-owner           = ""
+git-repo            = ""
+codepipeline-bucket = "" #Write a unique name because on AWS there can't be two buckets of same name
+```
+
+5. Now Add your values in them
+
+6. `cd Terraform` and Run these commands
 ```sh
 terraform init
 terraform apply --auto-approve
 ```
+output would be like this:
 
-5. Then Copy the CNAME Records Values from the terminal and Add them to your domain NameServer
 
-6. Open AWS Console and link the Codepipeline to your Github 
+7. Open AWS Console and search for Codepipeline then click on setting approve the github pending request
 
+![CodeStar-Pending-Request](images/github-pending-request-codestar.png)
+
+Copy and Paste this Url in browser your website is live!
+![cloudfront-url](images/cloudfront-url.png)
+
+## Optional: If you want to use your Custom Domain
+
+8. Then Copy Both CNAME Records Values from the terminal and Add them to your domain NameServer:
+Output in Terminal:
+![output](images/output.png)
+
+Add your Records like this:
+![CNAME-Records](images/cname-records.png)
+
+
+9. Lastly after few minutes again run this command in terraform Folder
+```sh
+terraform apply --auto-approve
+```
+
+Congrats Your Website is live! Check your Domain
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
