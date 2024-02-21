@@ -142,8 +142,6 @@ codepipeline-bucket = "" #Write a unique name because on AWS there can't be two 
 terraform init
 terraform apply --auto-approve
 ```
-output would be like this:
-
 
 7. Open AWS Console and search for Codepipeline then click on setting approve the github pending request
 
@@ -167,7 +165,7 @@ Add your Records like this:
 terraform apply --auto-approve
 ```
 
-Congrats Your Website is live! Check your Domain
+🎉Congrats Your Website is live! Check your Domain.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
