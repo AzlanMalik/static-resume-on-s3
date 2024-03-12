@@ -8,7 +8,7 @@ export const Bio = {
     "I'm a DevOps Engineer with a special knack to make software operates smoothly and effectively. I've spent years experimenting with tools like as Jenkins and AWS, constantly searching for ways to make things faster and more dependable. I enjoy solving difficult challenges and collaborating with others to create solutions that make everyone's job simpler.",
   github: "https://github.com/azlanmalik",
   resume:
-    "https://drive.google.com/file/d/1tqei7jpEEh-irN_FiHxz8q6yl_iQS5EU/view?usp=sharing",
+    "https://drive.google.com/file/d/1v8klpVa3hbpD6gFpMx6Dp4jxBhnroibJ/view?usp=drive_link",
   linkedin: "https://www.linkedin.com/in/azlanmalik/",
   // twitter: "https://twitter.com/",
   // insta: "https://www.instagram.com/",
